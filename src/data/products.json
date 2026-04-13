@@ -1,0 +1,30 @@
+[
+  {
+    "id": "p_1",
+    "name": "Minimalist Desk Pad",
+    "price": 39.99,
+    "image_url": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&q=80",
+    "description": "Premium vegan leather desk pad for a clean workspace."
+  },
+  {
+    "id": "p_2",
+    "name": "Ergonomic Mechanical Keyboard",
+    "price": 149.99,
+    "image_url": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&q=80",
+    "description": "Tactile switches with a low-profile design."
+  },
+  {
+    "id": "p_3",
+    "name": "Wireless Noise Cancelling Headphones",
+    "price": 299.00,
+    "image_url": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&q=80",
+    "description": "Immersive sound with industry-leading ANC."
+  },
+  {
+    "id": "p_4",
+    "name": "Smart Aluminum Monitor Stand",
+    "price": 89.50,
+    "image_url": "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=600&q=80",
+    "description": "Elevate your display and organize your desk."
+  }
+]
