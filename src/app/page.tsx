@@ -124,10 +124,20 @@ export default async function Home() {
           </div>
           <p className="text-gray-500 max-w-md mx-auto mb-10 sm:mb-12 text-base sm:text-lg px-4 italic">Advanced professional-grade optics for mobile creators.</p>
           
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-12 sm:mb-16 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
-            <a href="#" className="hover:text-black transition-colors">Instagram</a>
-            <a href="#" className="hover:text-black transition-colors">Twitter</a>
-            <a href="#" className="hover:text-black transition-colors">Vimeo</a>
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-12 sm:mb-16">
+            <a href="#" className="w-12 h-12 rounded-2xl bg-white shadow-lg flex items-center justify-center text-[#1877F2] hover:scale-110 transition-transform border border-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+            <a href="#" className="w-12 h-12 rounded-2xl bg-white shadow-lg flex items-center justify-center text-[#E4405F] hover:scale-110 transition-transform border border-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" className="w-12 h-12 rounded-2xl bg-white shadow-lg flex items-center justify-center text-black hover:scale-110 transition-transform border border-gray-50 overflow-hidden relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 448 512"><path d="M448 209.9a210.1 210.1 0 0 1-122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0h88a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/></svg>
+              <div className="absolute inset-0 bg-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+            <a href="#" className="w-12 h-12 rounded-2xl bg-white shadow-lg flex items-center justify-center text-[#FF0000] hover:scale-110 transition-transform border border-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
           </div>
 
           <div className="pt-12 sm:pt-16 border-t border-gray-100 text-gray-400 text-[10px] sm:text-xs flex flex-col md:flex-row justify-between items-center gap-6">
