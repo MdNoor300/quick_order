@@ -1,30 +1,37 @@
 [
   {
-    "id": "p_1",
-    "name": "Minimalist Desk Pad",
-    "price": 39.99,
-    "image_url": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&q=80",
-    "description": "Premium vegan leather desk pad for a clean workspace."
+    "id": "lens_1",
+    "name": "4K HD Wide Angle Lens",
+    "price": 49.99,
+    "image_url": "/products/lens_1.png",
+    "description": "Capture 2x more in every frame. Perfect for stunning landscapes, architecture, and group photos without distortion."
   },
   {
-    "id": "p_2",
-    "name": "Ergonomic Mechanical Keyboard",
-    "price": 149.99,
-    "image_url": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&q=80",
-    "description": "Tactile switches with a low-profile design."
+    "id": "lens_2",
+    "name": "25x Macro Precision Lens",
+    "price": 35.50,
+    "image_url": "/products/lens_2.png",
+    "description": "Reveal the unseen world. Capture intricate details of nature, textures, and tiny objects with incredible clarity."
   },
   {
-    "id": "p_3",
-    "name": "Wireless Noise Cancelling Headphones",
-    "price": 299.00,
-    "image_url": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&q=80",
-    "description": "Immersive sound with industry-leading ANC."
+    "id": "lens_3",
+    "name": "180° Ultra-Wide Fisheye",
+    "price": 29.99,
+    "image_url": "/products/lens_3.png",
+    "description": "Get the classic spherical look. Ideal for action sports, artistic portraits, and creative interior shots."
   },
   {
-    "id": "p_4",
-    "name": "Smart Aluminum Monitor Stand",
-    "price": 89.50,
-    "image_url": "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=600&q=80",
-    "description": "Elevate your display and organize your desk."
+    "id": "lens_4",
+    "name": "Cinematic Anamorphic Lens",
+    "price": 89.00,
+    "image_url": "/products/lens_4.png",
+    "description": "The filmmaker's favorite. Creates a 2.4:1 widescreen aspect ratio with beautiful horizontal lens flares."
+  },
+  {
+    "id": "lens_5",
+    "name": "2x Telephoto Portrait Lens",
+    "price": 59.99,
+    "image_url": "/products/lens_5.png",
+    "description": "Get closer without losing quality. Delivers professional shallow depth-of-field and flattering perspective for portraits."
   }
 ]
