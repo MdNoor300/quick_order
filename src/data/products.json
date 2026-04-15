@@ -9,5 +9,76 @@
     ],
     "category": "Lenses",
     "description": "Powerful 28X optical zoom telescope lens for your smartphone. Comes with a tripod for stable shots, a phone clip, and a protective case. Ideal for concerts, bird watching, and long-range photography."
+  },
+  {
+    "id": "telephoto_12x",
+    "name": "12X Telephoto Lens (Metal Body)",
+    "price": 1700,
+    "images": [
+      "/products/telephoto_12x_1.png",
+      "/products/telephoto_12x_2.png",
+      "/products/telephoto_12x_3.png"
+    ],
+    "category": "Lenses",
+    "description": "Premium 12X telephoto lens with a durable aerospace-grade metal body. Delivers sharp, clear magnification for distant subjects. Includes a mini tripod and a universal mount for all smartphones."
+  },
+  {
+    "id": "telephoto_36x",
+    "name": "36X Telephoto Zoom Lens",
+    "price": 3310,
+    "images": [
+      "/products/telephoto_36x_1.png",
+      "/products/telephoto_36x_2.png",
+      "/products/telephoto_36x_3.png"
+    ],
+    "category": "Lenses",
+    "description": "Our most powerful optical zoom. The 36X Telephoto lens brings extremely distant subjects into sharp focus. Perfect for wildlife, concerts, and architectural detail. Comes with a professional-grade stabilizing tripod."
+  },
+  {
+    "id": "telephoto_8x",
+    "name": "8X Telephoto Zoom Lens",
+    "price": 770,
+    "images": [
+      "/products/telephoto_8x_1.jpg",
+      "/products/telephoto_8x_2.png",
+      "/products/telephoto_8x_3.png"
+    ],
+    "category": "Lenses",
+    "description": "Compact and powerful. The 8X Telephoto lens is the perfect entry-level optic for mobile photographers. Capture clear, magnified shots of subjects from a distance. Includes a universal clip mount."
+  },
+  {
+    "id": "telephoto_18x",
+    "name": "18X Telephoto Lens (Metal Body)",
+    "price": 2100,
+    "images": [
+      "/products/telephoto_18x_1.png",
+      "/products/telephoto_18x_2.png",
+      "/products/telephoto_18x_3.png"
+    ],
+    "category": "Lenses",
+    "description": "Professional 18X magnification in a rugged metal chassis. This lens set includes a super wide-angle and macro lens attachment for ultimate versatility. Engineered for stability and clarity in all lighting conditions."
+  },
+  {
+    "id": "telephoto_apexel_20_40x",
+    "name": "Apexel 20-40X Telephoto Zoom Lens",
+    "price": 9100,
+    "images": [
+      "/products/apexel_20_40x_1.png",
+      "/products/apexel_20_40x_2.png"
+    ],
+    "category": "Lenses",
+    "description": "The ultimate adjustable zoom lens. This Apexel flagship features a dual-ring system for independent focus and zoom control (20X-40X). Includes a professional-grade stabilizing tripod and weather-resistant carrying case. Multi-coated glass ensures zero chromatic aberration."
+  },
+  {
+    "id": "acc_nd_filter",
+    "name": "37mm Adjustable Variable ND Filter (ND2-400)",
+    "price": 1730,
+    "images": [
+      "/products/nd_filter_1.png",
+      "/products/nd_filter_2.png",
+      "/products/nd_filter_3.png"
+    ],
+    "category": "Accessories",
+    "description": "Master long exposures and cinematic lighting. This variable ND filter provides adjustable light reduction from 1 to 9 stops (ND2-ND400). High-quality optical glass ensures no color cast. Includes a universal 37mm clip-on mount for all smartphones."
   }
 ]
