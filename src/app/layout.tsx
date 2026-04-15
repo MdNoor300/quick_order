@@ -14,7 +14,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Tech Tuktak | Premium Mobile Photography Lenses",
+  title: "Tuktak Shop | Premium Mobile Photography Lenses",
   description: "Transform your smartphone into a professional camera with our premium lens collection.",
 };
 

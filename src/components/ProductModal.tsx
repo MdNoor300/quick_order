@@ -76,7 +76,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                 id="fullName"
                 name="fullName"
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-black focus:border-black outline-none transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                 placeholder="John Doe"
               />
             </div>
@@ -92,7 +92,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                 required
                 pattern="\d{11}"
                 title="Phone number must be exactly 11 digits"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-black focus:border-black outline-none transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                 placeholder="01712345678"
               />
             </div>
@@ -106,7 +106,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                 name="address"
                 required
                 rows={3}
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-black focus:border-black outline-none transition-all resize-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"
                 placeholder="123 Main Street, Appt 4B, City, Country"
               />
             </div>
@@ -120,7 +120,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 px-6 rounded-lg bg-black text-white font-medium hover:bg-gray-900 focus:ring-4 focus:ring-gray-200 disabled:opacity-70 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 px-6 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 disabled:opacity-70 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>

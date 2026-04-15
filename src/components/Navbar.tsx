@@ -29,11 +29,8 @@ export default function Navbar() {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'glass-nav py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
-            <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center text-white group-hover:bg-primary transition-colors">
-              <Camera size={20} />
-            </div>
-            <span className="text-xl font-bold tracking-tight">Tech Tuktak</span>
+          <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
+            <img src="/logo.png" alt="Tuktak Shop Logo" className="h-24 w-auto object-contain" />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -69,11 +66,8 @@ export default function Navbar() {
           className={`absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-500 ease-out p-8 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white">
-                <Camera size={16} />
-              </div>
-              <span className="font-bold">Tech Tuktak</span>
+            <div className="flex items-center">
+              <img src="/logo.png" alt="Tuktak Shop Logo" className="h-16 w-auto object-contain" />
             </div>
             <button 
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"

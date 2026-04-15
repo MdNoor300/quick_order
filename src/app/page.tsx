@@ -21,7 +21,7 @@ export default async function Home() {
             
             <h1 className="text-4xl sm:text-7xl md:text-9xl font-black tracking-tighter text-foreground leading-[0.9] drop-shadow-sm px-2">
               <span className="block">MASTER MOBILE</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary block uppercase">PHOTOGRAPHY</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-brand-green block uppercase">PHOTOGRAPHY</span>
             </h1>
             
             <p className="text-base sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-medium leading-relaxed px-4">
@@ -40,14 +40,14 @@ export default async function Home() {
         </div>
 
         {/* Dynamic shapes */}
-        <div className="absolute top-1/4 -left-20 w-64 h-64 sm:w-96 sm:h-96 bg-primary/10 rounded-full blur-[80px] sm:blur-[120px] -z-10 animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-64 h-64 sm:w-96 sm:h-96 bg-secondary/10 rounded-full blur-[80px] sm:blur-[120px] -z-10 animate-pulse" />
+        <div className="absolute top-1/4 -left-20 w-64 h-64 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-[80px] sm:blur-[120px] -z-10 animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-64 h-64 sm:w-96 sm:h-96 bg-secondary/5 rounded-full blur-[80px] sm:blur-[120px] -z-10 animate-pulse" />
       </section>
 
       {/* Bento Grid Features */}
       <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="features">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 px-4">Why Tech Tuktak?</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 px-4">Why Tuktak Shop?</h2>
           <p className="text-gray-500 text-base sm:text-lg">Uncompromising quality in every single glass.</p>
         </div>
 
@@ -75,9 +75,9 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between group cursor-default bg-black text-white text-left min-h-[180px] md:min-h-0">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between group cursor-default bg-primary text-white text-left min-h-[180px] md:min-h-0">
              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-              <Sparkles className="text-white" size={20} />
+              <Sparkles className="text-accent" size={20} />
             </div>
             <div>
               <h3 className="text-xl font-bold mb-1 sm:mb-2 text-white">4K Ready</h3>
@@ -116,11 +116,8 @@ export default async function Home() {
       {/* Footer */}
       <footer className="bg-white pt-20 sm:pt-32 pb-12 sm:pb-16 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-black rounded-xl sm:rounded-2xl flex items-center justify-center text-white">
-              <Camera size={24} />
-            </div>
-            <span className="text-2xl sm:text-3xl font-black tracking-tighter">TECH TUKTAK</span>
+          <div className="flex items-center justify-center mb-6 sm:mb-8 text-center">
+            <img src="/logo.png" alt="Tuktak Shop Logo" className="h-64 w-auto object-contain" />
           </div>
           <p className="text-gray-500 max-w-md mx-auto mb-10 sm:mb-12 text-base sm:text-lg px-4 italic">Advanced professional-grade optics for mobile creators.</p>
           
@@ -142,7 +139,7 @@ export default async function Home() {
 
           <div className="pt-12 sm:pt-16 border-t border-gray-100 text-gray-400 text-[10px] sm:text-xs flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left px-4">
-              &copy; {new Date().getFullYear()} Tech Tuktak. Professional rights reserved.
+              &copy; {new Date().getFullYear()} Tuktak Shop. Professional rights reserved.
             </div>
             <div className="flex gap-8 px-4">
               <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>

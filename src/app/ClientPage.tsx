@@ -41,7 +41,7 @@ export default function ClientPage({ products }: { products: Product[] }) {
               </div>
 
               <div className="absolute bottom-4 left-4 text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-                <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5 opacity-70">Tech Tuktak</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5 opacity-70">Tuktak Shop</div>
                 <div className="text-lg font-black leading-tight">{product.name}</div>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function ClientPage({ products }: { products: Product[] }) {
               
               <div className="mt-6 pt-6 border-t border-gray-50">
                 <button
-                  className="w-full px-5 py-3.5 rounded-xl bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-primary transition-all flex items-center justify-center gap-2 group/btn shadow-lg hover:shadow-primary/20"
+                  className="w-full px-5 py-3.5 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-all flex items-center justify-center gap-2 group/btn shadow-lg hover:shadow-primary/20"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedProduct(product);
