@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, CheckCircle2, Trash2, Clock, Check, Loader2 } from 'lucide-react';
-import { updateOrderStatus, deleteOrder } from './actions';
+import { updateOrderStatus, deleteOrder } from '@/app/actions/admin';
 
 export interface Order {
   id: string;
