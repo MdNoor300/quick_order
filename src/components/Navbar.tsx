@@ -34,9 +34,10 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#products" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Products</Link>
-            <Link href="#features" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Technology</Link>
-            <Link href="#about" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">About</Link>
+            <Link href="#lenses" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Lenses</Link>
+            <Link href="#accessories" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Accessories</Link>
+            <Link href="#reviews" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Reviews</Link>
+            <Link href="#faq" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">FAQ</Link>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -79,25 +80,32 @@ export default function Navbar() {
 
           <div className="flex flex-col gap-6">
             <Link 
-              href="#products" 
+              href="#lenses" 
               className="text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Products
+              Lenses
             </Link>
             <Link 
-              href="#features" 
+              href="#accessories" 
               className="text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Technology
+              Accessories
             </Link>
             <Link 
-              href="#about" 
+              href="#reviews" 
               className="text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About
+              Reviews
+            </Link>
+            <Link 
+              href="#faq" 
+              className="text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              FAQ
             </Link>
           </div>
 

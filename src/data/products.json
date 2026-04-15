@@ -1,37 +1,13 @@
 [
   {
-    "id": "lens_1",
-    "name": "4K HD Wide Angle Lens",
-    "price": 49.99,
-    "image_url": "/products/lens_1.png",
-    "description": "Capture 2x more in every frame. Perfect for stunning landscapes, architecture, and group photos without distortion."
-  },
-  {
-    "id": "lens_2",
-    "name": "25x Macro Precision Lens",
-    "price": 35.50,
-    "image_url": "/products/lens_2.png",
-    "description": "Reveal the unseen world. Capture intricate details of nature, textures, and tiny objects with incredible clarity."
-  },
-  {
-    "id": "lens_3",
-    "name": "180° Ultra-Wide Fisheye",
-    "price": 29.99,
-    "image_url": "/products/lens_3.png",
-    "description": "Get the classic spherical look. Ideal for action sports, artistic portraits, and creative interior shots."
-  },
-  {
-    "id": "lens_4",
-    "name": "Cinematic Anamorphic Lens",
-    "price": 89.00,
-    "image_url": "/products/lens_4.png",
-    "description": "The filmmaker's favorite. Creates a 2.4:1 widescreen aspect ratio with beautiful horizontal lens flares."
-  },
-  {
-    "id": "lens_5",
-    "name": "2x Telephoto Portrait Lens",
-    "price": 59.99,
-    "image_url": "/products/lens_5.png",
-    "description": "Get closer without losing quality. Delivers professional shallow depth-of-field and flattering perspective for portraits."
+    "id": "telephoto_28x",
+    "name": "28X Telephoto Zoom Lens",
+    "price": 1690,
+    "images": [
+      "/products/telephoto_28x.png",
+      "/products/telephoto_28x_2.png"
+    ],
+    "category": "Lenses",
+    "description": "Powerful 28X optical zoom telescope lens for your smartphone. Comes with a tripod for stable shots, a phone clip, and a protective case. Ideal for concerts, bird watching, and long-range photography."
   }
 ]

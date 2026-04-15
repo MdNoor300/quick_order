@@ -1,12 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import ClientPage from '@/app/ClientPage';
-import { Shield, Zap, Sparkles, Award, Camera } from 'lucide-react';
+import { Shield, Zap, Sparkles, Award, Camera, Plus } from 'lucide-react';
 
 export default async function Home() {
   const filePath = path.join(process.cwd(), 'src/data/products.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const products = JSON.parse(fileContents);
+
+  const lenses = products.filter((p: any) => p.category === 'Lenses');
+  const accessories = products.filter((p: any) => p.category === 'Accessories');
 
   return (
     <main className="min-h-screen bg-background">
@@ -97,20 +100,119 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Product Grid Section */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 sm:pb-32" id="products">
+      {/* Product Grid Section - Lenses */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 sm:pb-32" id="lenses">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-4">
           <div className="text-left">
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3 sm:mb-4 px-2">The Collection</h2>
-            <p className="text-gray-500 text-base sm:text-lg px-2">Curated tools for the professional storyteller.</p>
-          </div>
-          <div className="flex flex-wrap gap-2 px-2">
-            <span className="px-4 py-2 rounded-full bg-black text-white text-xs sm:text-sm font-bold tracking-widest uppercase">All Lenses</span>
-            <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-400 text-xs sm:text-sm font-bold tracking-widest uppercase hover:bg-gray-200 cursor-pointer transition-colors">Cinema</span>
-            <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-400 text-xs sm:text-sm font-bold tracking-widest uppercase hover:bg-gray-200 cursor-pointer transition-colors">Macro</span>
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3 sm:mb-4 px-2">The Lens Collection</h2>
+            <p className="text-gray-500 text-base sm:text-lg px-2">World-class optics engineered for mobile storytelling.</p>
           </div>
         </div>
-        <ClientPage products={products} />
+        <ClientPage products={lenses} />
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-primary/5 py-24 sm:py-32 px-4 sm:px-6 lg:px-8" id="reviews">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4">Voices from the Field</h2>
+            <p className="text-gray-500 text-lg">Trusted by photographers and creators worldwide.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Sarah J.", role: "Travel Content Creator", text: "The 4K Wide Angle lens changed my travel vlogs forever. The clarity is indistinguishable from my mirrorless setup." },
+              { name: "Marcus T.", role: "Street Photographer", text: "Finally, a macro lens that actually captures professional-grade textures on a smartphone. Truly impressive glass." },
+              { name: "Elena R.", role: "Cinematographer", text: "The anamorphic lens flares are breathtaking. Tuktak has nailed the cinematic look for mobile creators." }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl shadow-xl shadow-primary/5 border border-primary/5">
+                <div className="flex gap-1 mb-4 text-accent">
+                  {[...Array(5)].map((_, i) => <Sparkles key={i} size={16} fill="currentColor" />)}
+                </div>
+                <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                <div>
+                  <div className="font-bold text-gray-900">{testimonial.name}</div>
+                  <div className="text-sm text-gray-400">{testimonial.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Showcase Section */}
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="showcase">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter leading-tight">
+              SHOT WITH <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">TUKTAK SHOP</span>
+            </h2>
+            <p className="text-xl text-gray-500 leading-relaxed">
+              Our community is pushing the boundaries of what's possible with a smartphone. Join thousands of creators who've upgraded their optics.
+            </p>
+            <div className="flex gap-4">
+              <div className="text-center border-r border-gray-100 pr-8">
+                <div className="text-3xl font-black text-primary">500K+</div>
+                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Images Shared</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-black text-secondary">4.9/5</div>
+                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Global Rating</div>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="space-y-4">
+               <div className="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden shadow-lg transform hover:-rotate-2 transition-transform duration-500">
+                  <img src="/logo.png" className="w-full h-full object-contain" alt="Showcase" />
+               </div>
+               <div className="aspect-square bg-primary/10 rounded-3xl overflow-hidden shadow-lg transform hover:rotate-2 transition-transform duration-500">
+                  <img src="/logo.png" className="w-full h-full object-contain" alt="Showcase" />
+               </div>
+             </div>
+             <div className="space-y-4 pt-8">
+               <div className="aspect-square bg-secondary/10 rounded-3xl overflow-hidden shadow-lg transform hover:rotate-2 transition-transform duration-500">
+                  <img src="/products/telephoto_28x.png" className="w-full h-full object-cover scale-150" alt="Showcase" />
+               </div>
+               <div className="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden shadow-lg transform hover:-rotate-2 transition-transform duration-500">
+                  <img src="/logo.png" className="w-full h-full object-contain" alt="Showcase" />
+               </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+       {/* Product Grid Section - Accessories */}
+       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 sm:pb-32" id="accessories">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-4">
+          <div className="text-left">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3 sm:mb-4 px-2">Pro Creator Tools</h2>
+            <p className="text-gray-500 text-base sm:text-lg px-2">The essentials you need to stabilize, illuminate, and maintain.</p>
+          </div>
+        </div>
+        <ClientPage products={accessories} />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 sm:py-32 bg-gray-50 px-4 sm:px-6 lg:px-8" id="faq">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-center mb-16">Reliability First</h2>
+          <div className="space-y-4">
+            {[
+              { q: "Will these work with my phone?", a: "Yes! Our patented universal clip system is designed to fit 99% of modern smartphones, including all iPhone, Samsung Galaxy, and Google Pixel models." },
+              { q: "What is your shipping time?", a: "We ship all orders within 24 hours. Standard delivery typically takes 3-5 business days depending on your location." },
+              { q: "Do you offer a warranty?", a: "Absolutely. Every Tuktak product comes with a 12-month manufacturer warranty covering any defects in optics or construction." }
+            ].map((faq, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <h3 className="text-lg font-bold mb-2 flex items-center justify-between">
+                  {faq.q}
+                  <Plus size={18} className="text-primary" />
+                </h3>
+                <p className="text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
       
       {/* Footer */}

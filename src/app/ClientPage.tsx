@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import ProductModal from '@/components/ProductModal';
+import ImageSlider from '@/components/ImageSlider';
 import { Plus, ArrowRight } from 'lucide-react';
 
 interface Product {
   id: string;
   name: string;
   price: number;
-  image_url: string;
+  images: string[];
   description: string;
 }
 
@@ -24,23 +25,20 @@ export default function ClientPage({ products }: { products: Product[] }) {
             className="group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-primary/10 transition-all duration-500 border border-gray-100 hover:-translate-y-2 cursor-pointer"
             onClick={() => setSelectedProduct(product)}
           >
-            {/* Image Container */}
+            {/* Image Container with Slider */}
             <div className="relative aspect-square overflow-hidden bg-gray-50">
-              <img 
-                src={product.image_url} 
-                alt={product.name} 
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <ImageSlider images={product.images} name={product.name} />
+              
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
               
               {/* Floating Badge */}
-              <div className="absolute top-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-black shadow-lg">
+              <div className="absolute top-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-primary shadow-lg hover:bg-primary hover:text-white transition-colors">
                   <Plus size={20} />
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-4 text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+              <div className="absolute bottom-4 left-4 text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10">
                 <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5 opacity-70">Tuktak Shop</div>
                 <div className="text-lg font-black leading-tight">{product.name}</div>
               </div>
@@ -54,7 +52,7 @@ export default function ClientPage({ products }: { products: Product[] }) {
                     {product.name}
                   </h3>
                   <div className="text-xl font-black text-primary">
-                    ${product.price}
+                    ৳{product.price}
                   </div>
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
