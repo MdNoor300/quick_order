@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Transform your smartphone into a professional camera with our premium lens collection.",
 };
 
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,6 +34,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <WhatsAppButton />
+        <Footer />
       </body>
     </html>
   );

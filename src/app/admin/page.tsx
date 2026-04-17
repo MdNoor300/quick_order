@@ -5,6 +5,8 @@ import path from 'path';
 import AdminDashboardClient from './AdminDashboardClient';
 import { Order } from './AdminTable';
 
+import { cookies } from 'next/headers';
+
 export const dynamic = 'force-dynamic';
 
 export default async function AdminPage({
@@ -12,7 +14,8 @@ export default async function AdminPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const secret = (await searchParams).secret;
+  const cookieStore = await cookies();
+  const secret = (await searchParams).secret || cookieStore.get('admin_secret')?.value;
   const expectedSecret = process.env.ADMIN_SECRET;
 
   if (!expectedSecret || secret !== expectedSecret) {
