@@ -48,14 +48,20 @@ export default async function Home() {
       </section>
 
       {/* Bento Grid Features */}
-      <section className="py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden" id="features">
+      <section className="py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative" id="features">
+        {/* Added dynamic background elements for the section */}
+        <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-40">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-[150px] animate-pulse" />
+        </div>
+
         <div className="flex flex-col items-center text-center mb-16 sm:mb-24 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-10" />
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary text-xs font-black uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary text-xs font-black uppercase tracking-widest mb-4 border border-primary/10">
             <Award size={14} />
             The Standard
           </div>
-          <h2 className="text-4xl sm:text-7xl font-black tracking-tighter mb-6">WHY TUKTAK SHOP?</h2>
+          <h2 className="text-4xl sm:text-7xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600">WHY TUKTAK SHOP?</h2>
           <p className="text-gray-500 text-lg sm:text-xl max-w-2xl font-medium leading-relaxed">
             We don't just sell lenses; we engineer professional-grade photography tools for the modern creator.
           </p>
@@ -63,62 +69,94 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[700px]">
           {/* Main Feature - Large */}
-          <div className="md:col-span-2 md:row-span-2 rounded-[2.5rem] p-8 sm:p-12 flex flex-col justify-end group cursor-default overflow-hidden relative border border-gray-100 bg-white shadow-2xl hover:shadow-primary/5 transition-all duration-700">
-            <div className="absolute top-0 right-0 p-12 text-primary/5 group-hover:text-primary/10 transition-colors transform group-hover:scale-110 duration-700">
-              <Shield size={320} strokeWidth={0.5} />
+          <div className="md:col-span-2 md:row-span-2 rounded-[2.5rem] p-8 sm:p-12 flex flex-col justify-end group cursor-default overflow-hidden relative border border-gray-100 bg-gradient-to-br from-white via-white to-primary/5 shadow-2xl hover:shadow-primary/10 transition-all duration-700">
+            {/* Blueprint Grid Texture */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                 style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            
+            <div className="absolute top-0 right-0 p-8 sm:p-12 text-primary/10 group-hover:text-primary/15 transition-all transform group-hover:scale-110 group-hover:-rotate-3 duration-700">
+              <Shield size={340} strokeWidth={0.3} />
             </div>
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
             <div className="relative z-10 space-y-6">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform duration-500">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                 <Shield size={28} />
               </div>
-              <div>
-                <h3 className="text-3xl sm:text-5xl font-black mb-4 tracking-tighter uppercase">Cinema-Grade <br />Optics</h3>
-                <p className="text-gray-500 text-lg max-w-sm leading-relaxed font-medium">
-                  Every lens is multi-coated with aerospace-grade materials to ensure zero distortion and maximum light transmission.
+              <div className="space-y-4">
+                <h3 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter uppercase leading-[0.9]">Cinema-Grade <br /><span className="text-primary">Optics</span></h3>
+                <p className="text-gray-500 text-lg sm:text-xl max-w-sm leading-relaxed font-medium">
+                  Every lens is multi-coated with aerospace-grade materials to ensure <span className="text-gray-900">zero distortion</span> and maximum light transmission.
                 </p>
+                <div className="flex gap-2 pt-2">
+                  <span className="px-3 py-1 bg-primary/5 text-primary text-[10px] font-bold rounded-full border border-primary/10">NANO-COATING</span>
+                  <span className="px-3 py-1 bg-primary/5 text-primary text-[10px] font-bold rounded-full border border-primary/10">HD GLASS</span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Instant Focus - Square */}
-          <div className="rounded-[2rem] p-8 flex flex-col justify-between group cursor-default transition-all duration-500 bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-xl relative overflow-hidden">
+          <div className="rounded-[2rem] p-8 flex flex-col justify-between group cursor-default transition-all duration-500 bg-gradient-to-br from-gray-50 to-white hover:to-secondary/5 border border-transparent hover:border-secondary/20 hover:shadow-2xl relative overflow-hidden">
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-secondary/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-            <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary relative z-10 group-hover:rotate-12 transition-transform">
-              <Zap size={24} />
+            
+            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center text-white relative z-10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,172,227,0.4)] transition-all">
+              <Zap size={24} fill="currentColor" />
             </div>
             <div className="relative z-10">
               <h3 className="text-xl font-black uppercase mb-2 tracking-tight">Instant Focus</h3>
-              <p className="text-gray-500 text-sm font-medium leading-relaxed">Lightning fast autofocus compatibility with all devices.</p>
+              <p className="text-gray-500 text-sm font-medium leading-relaxed">Lightning fast autofocus <span className="text-secondary font-bold">zero latency</span> compatibility with all devices.</p>
             </div>
           </div>
 
           {/* 4K Ready - Square Contrast */}
-          <div className="rounded-[2rem] p-8 flex flex-col justify-between group cursor-default bg-black text-white relative overflow-hidden transition-all duration-500 hover:-translate-y-2">
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-50" />
-            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white relative z-10">
-              <Sparkles size={24} />
+          <div className="rounded-[2rem] p-8 flex flex-col justify-between group cursor-default bg-black text-white relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-tr from-primary/30 via-transparent to-transparent opacity-60" />
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+            
+            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black relative z-10 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+              <Sparkles size={24} fill="currentColor" />
             </div>
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-                <span className="text-[10px] font-black tracking-widest uppercase opacity-60">High Performance</span>
+                <div className="w-2 h-2 rounded-full bg-brand-green animate-pulse shadow-[0_0_8px_#39B54A]" />
+                <span className="text-[10px] font-black tracking-widest uppercase text-brand-green">Live Tracking</span>
               </div>
               <h3 className="text-xl font-black uppercase mb-1 tracking-tight">4K Cinema Ready</h3>
-              <p className="text-white/60 text-sm font-medium leading-relaxed">Specifically designed for 4K video capture without loss.</p>
+              <p className="text-white/60 text-sm font-medium leading-relaxed">Lossless video capture for <span className="text-white">professional</span> workflows.</p>
             </div>
           </div>
 
           {/* Universal - Wide */}
-          <div className="md:col-span-2 rounded-[2rem] p-8 flex items-center justify-between group cursor-default bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
-             <div className="absolute left-0 bottom-0 w-1/2 h-1/2 bg-gradient-to-tr from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-             <div className="relative z-10 max-w-xs space-y-3">
-               <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter">Universal <br />Compatibility</h3>
-               <p className="text-gray-500 text-sm font-medium leading-relaxed">Our patented clip system secures seamlessly to iPhone, Samsung, and Pixel.</p>
+          <div className="md:col-span-2 rounded-[2rem] p-8 flex items-center justify-between group cursor-default bg-gradient-to-r from-white to-gray-50 border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+             <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-secondary/5 to-transparent pointer-events-none" />
+             
+             <div className="relative z-10 max-w-xs space-y-4">
+               <div>
+                  <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter leading-tight">Universal <br /><span className="text-secondary">Compatibility</span></h3>
+                  <p className="text-gray-500 text-sm sm:text-base font-medium leading-relaxed mt-2">Our patented clip system secures seamlessly to 99% of modern smartphones.</p>
+               </div>
+               
+               <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2">
+                    {['iPhone', 'Samsung', 'Pixel'].map((brand, i) => (
+                      <div key={i} className="w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center text-[8px] font-black text-gray-400 group-hover:border-secondary/30 transition-colors">
+                        {brand[0]}
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">+ All Major Brands</span>
+               </div>
              </div>
-             <div className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-3xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500 rotate-6 group-hover:rotate-0 shadow-lg">
-                <Camera size={36} className="transition-transform group-hover:scale-110" />
+
+             <div className="relative z-10 group-hover:scale-105 transition-transform duration-500">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-[2rem] flex items-center justify-center shadow-xl border border-gray-50 relative overflow-hidden">
+                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                   <Camera size={48} className="text-gray-900 transition-all group-hover:text-primary group-hover:scale-110" />
+                </div>
+                {/* Decorative dots */}
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform delay-100 shadow-lg shadow-secondary/20">
+                  <Plus size={16} strokeWidth={3} />
+                </div>
              </div>
           </div>
         </div>
