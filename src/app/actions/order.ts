@@ -13,10 +13,10 @@ export async function createOrder(formData: FormData) {
     return { success: false, error: 'All fields are required.' };
   }
 
-  // Phone number must be 11 digits
-  const phoneRegex = /^\d{11}$/;
+  // Phone number must be Bangladeshi 11-digit format (013-019...)
+  const phoneRegex = /^01[3-9]\d{8}$/;
   if (!phoneRegex.test(phoneNumber)) {
-    return { success: false, error: 'Phone number must be exactly 11 digits.' };
+    return { success: false, error: 'Please enter a valid phone number' };
   }
 
   // Insert into Supabase 'orders' table

@@ -100,8 +100,17 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   id="phoneNumber"
                   name="phoneNumber"
                   required
-                  pattern="\d{11}"
-                  title="Phone number must be exactly 11 digits"
+                  maxLength={11}
+                  onInput={(e) => {
+                    const value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                    e.currentTarget.value = value;
+                    
+                    if (value.length > 0 && !/^01[3-9]\d{8}$/.test(value)) {
+                      e.currentTarget.setCustomValidity('Please enter a valid phone number');
+                    } else {
+                      e.currentTarget.setCustomValidity('');
+                    }
+                  }}
                   className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
                   placeholder="01712345678"
                 />
