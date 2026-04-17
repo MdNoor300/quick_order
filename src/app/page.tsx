@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import ClientPage from '@/app/ClientPage';
 import { Shield, Zap, Sparkles, Award, Camera, Plus, Mail, ArrowUpRight } from 'lucide-react';
+import FAQAccordion from '@/components/FAQAccordion';
 
 export default async function Home() {
   const filePath = path.join(process.cwd(), 'src/data/products.json');
@@ -10,6 +11,12 @@ export default async function Home() {
 
   const lenses = products.filter((p: any) => p.category === 'Lenses');
   const accessories = products.filter((p: any) => p.category === 'Accessories');
+
+  const faqs = [
+    { q: "Will these work with my phone?", a: "Yes! Our patented universal clip system is designed to fit 99% of modern smartphones, including all iPhone, Samsung Galaxy, and Google Pixel models." },
+    { q: "What is your shipping time?", a: "We ship all orders within 24 hours. Standard delivery typically takes 3-5 business days depending on your location." },
+    { q: "Do you offer a warranty?", a: "Absolutely. Every Tuktak product comes with a 12-month manufacturer warranty covering any defects in optics or construction." }
+  ];
 
   return (
     <main className="min-h-screen bg-background">
@@ -244,7 +251,6 @@ export default async function Home() {
         </div>
       </section>
 
-       {/* Product Grid Section - Accessories */}
        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 sm:pb-32" id="accessories">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-4">
           <div className="text-left">
@@ -254,26 +260,11 @@ export default async function Home() {
         </div>
         <ClientPage products={accessories} />
       </section>
-
       {/* FAQ Section */}
       <section className="py-24 sm:py-32 bg-gray-50 px-4 sm:px-6 lg:px-8" id="faq">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-center mb-16">Reliability First</h2>
-          <div className="space-y-4">
-            {[
-              { q: "Will these work with my phone?", a: "Yes! Our patented universal clip system is designed to fit 99% of modern smartphones, including all iPhone, Samsung Galaxy, and Google Pixel models." },
-              { q: "What is your shipping time?", a: "We ship all orders within 24 hours. Standard delivery typically takes 3-5 business days depending on your location." },
-              { q: "Do you offer a warranty?", a: "Absolutely. Every Tuktak product comes with a 12-month manufacturer warranty covering any defects in optics or construction." }
-            ].map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <h3 className="text-lg font-bold mb-2 flex items-center justify-between">
-                  {faq.q}
-                  <Plus size={18} className="text-primary" />
-                </h3>
-                <p className="text-gray-500 leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={faqs} />
         </div>
       </section>
       
