@@ -18,7 +18,7 @@ export default function ClientPage({ products }: { products: Product[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-8 px-4 sm:px-0">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-8 px-2 sm:px-0">
         {products.map((product) => (
           <div 
             key={product.id} 
@@ -32,54 +32,56 @@ export default function ClientPage({ products }: { products: Product[] }) {
             {/* 3D Inner Wrapper */}
             <div className="flex flex-col flex-grow transition-all duration-700 ease-out group-hover:[transform:rotateX(5deg)_rotateY(-5deg)_translateZ(20px)] group-hover:shadow-[0_45px_100px_rgba(45,50,140,0.15)] h-full">
               
-              {/* Image Container - Switched to shorter aspect ratios */}
-              <div className="relative aspect-video sm:aspect-[16/10] overflow-hidden bg-gray-50 rounded-t-[2.5rem]">
+              {/* Image Container - Aspect square on mobile for better grid alignment */}
+              <div className="relative aspect-square sm:aspect-[16/10] overflow-hidden bg-gray-50 rounded-t-[1.5rem] sm:rounded-t-[2.5rem]">
                 <ImageSlider images={product.images} name={product.name} />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* 3D Floating Badge - Slightly smaller */}
-                <div className="absolute top-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-20 [transform:translateZ(40px)]">
-                  <div className="w-12 h-12 rounded-xl bg-white shadow-[0_10px_20px_rgba(0,0,0,0.1)] flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
-                    <Plus size={20} strokeWidth={2.5} />
+                {/* 3D Floating Badge - Scaled for mobile */}
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-20 [transform:translateZ(40px)]">
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-white shadow-[0_10px_20px_rgba(0,0,0,0.1)] flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+                    <Plus size={16} className="sm:hidden" strokeWidth={2.5} />
+                    <Plus size={20} className="hidden sm:block" strokeWidth={2.5} />
                   </div>
                 </div>
 
-                {/* Overlaid Brand Tag - Slightly smaller */}
-                <div className="absolute top-4 left-4 z-20 [transform:translateZ(30px)]">
-                  <span className="px-3 py-1 rounded-full bg-black/10 backdrop-blur-md text-white text-[9px] sm:text-xs font-black uppercase tracking-widest border border-white/20">
+                {/* Overlaid Brand Tag - Scaled for mobile */}
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 [transform:translateZ(30px)]">
+                  <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/10 backdrop-blur-md text-white text-[7px] sm:text-xs font-black uppercase tracking-widest border border-white/20">
                     Pro Series
                   </span>
                 </div>
               </div>
               
-              {/* Content Container - Reduced padding and spacing */}
-              <div className="p-5 sm:p-7 flex flex-col flex-grow bg-white relative z-10 [transform:translateZ(20px)]">
-                <div className="flex-grow space-y-2 sm:space-y-3">
-                  <div className="flex flex-col gap-1">
-                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-primary/40">Optical Grade</div>
-                    <h3 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tighter leading-none group-hover:text-primary transition-colors">
+              {/* Content Container - Compact for mobile */}
+              <div className="p-3 sm:p-7 flex flex-col flex-grow bg-white relative z-10 [transform:translateZ(20px)]">
+                <div className="flex-grow space-y-1 sm:space-y-3">
+                  <div className="flex flex-col gap-0.5 sm:gap-1">
+                    <div className="text-[7px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-primary/40">Optical Grade</div>
+                    <h3 className="text-sm sm:text-2xl font-black text-gray-900 tracking-tighter leading-tight group-hover:text-primary transition-colors line-clamp-1">
                       {product.name}
                     </h3>
-                    <div className="text-2xl font-black text-primary">
+                    <div className="text-base sm:text-2xl font-black text-primary">
                       ৳{product.price}
                     </div>
                   </div>
-                  <p className="text-gray-500 text-sm sm:text-base leading-relaxed line-clamp-1 sm:line-clamp-2 font-medium">
+                  <p className="text-gray-500 text-[10px] sm:text-base leading-relaxed line-clamp-1 sm:line-clamp-2 font-medium">
                     {product.description}
                   </p>
                 </div>
                 
-                <div className="mt-5 pt-5 border-t border-gray-100">
+                <div className="mt-3 sm:mt-5 pt-3 sm:pt-5 border-t border-gray-100">
                   <button
-                    className="w-full px-6 py-3.5 rounded-xl bg-gray-900 text-white text-xs font-black uppercase tracking-widest hover:bg-primary transition-all flex items-center justify-center gap-2 group/btn shadow-[0_15px_30px_rgba(0,0,0,0.1)] hover:shadow-primary/30 hover:-translate-y-1"
+                    className="w-full px-3 py-2 sm:px-6 sm:py-3.5 rounded-lg sm:rounded-xl bg-gray-900 text-white text-[10px] sm:text-xs font-black uppercase tracking-widest hover:bg-primary transition-all flex items-center justify-center gap-1 sm:gap-2 group/btn shadow-[0_10px_20px_rgba(0,0,0,0.1)] sm:shadow-[0_15px_30px_rgba(0,0,0,0.1)] hover:shadow-primary/30 hover:-translate-y-1"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedProduct(product);
                     }}
                   >
                     Quick Order
-                    <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                    <ArrowRight size={12} className="sm:hidden group-hover/btn:translate-x-1 transition-transform" />
+                    <ArrowRight size={16} className="hidden sm:block group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                   
                   <div className="mt-4 flex justify-between items-center px-1">
