@@ -1,7 +1,5 @@
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
-import fs from 'fs';
-import path from 'path';
 import AdminDashboardClient from './AdminDashboardClient';
 import { Order } from './AdminTable';
 
@@ -52,10 +50,13 @@ export default async function AdminPage({
   
   const orders: Order[] = (ordersData as Order[]) || [];
 
-  // Load products to pass to client and compute revenue 
-  const filePath = path.join(process.cwd(), 'src/data/products.json');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const products = JSON.parse(fileContents);
+  // Load products dynamically
+  const { data: productsData } = await supabase
+    .from('products')
+    .select('*')
+    .order('created_at', { ascending: false });
+  
+  const products = productsData || [];
   
   // Create Product Map
   const productMap: Record<string, { name: string; price: number }> = {};

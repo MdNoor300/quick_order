@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -19,7 +17,6 @@ export const metadata: Metadata = {
   description: "Transform your smartphone into a professional camera with our premium lens collection.",
 };
 
-import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -31,10 +28,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} antialiased`}
       >
-        <Navbar />
         {children}
-        <WhatsAppButton />
-        <Footer />
       </body>
     </html>
   );

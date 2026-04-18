@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock } from 'lucide-react';
+import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2 } from 'lucide-react';
 import AdminTable, { Order } from './AdminTable';
+import ProductModal from '@/components/admin/ProductModal';
+import { deleteProduct, migrateProducts } from '@/app/actions/products';
+import Swal from 'sweetalert2';
 
 interface Product {
   id: string;
@@ -12,6 +15,7 @@ interface Product {
   price: number;
   category: string;
   images: string[];
+  description: string;
 }
 
 interface AdminDashboardClientProps {
@@ -32,6 +36,52 @@ export default function AdminDashboardClient({
   metrics,
 }: AdminDashboardClientProps) {
   const [activeTab, setActiveTab] = useState<'orders' | 'products'>('orders');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isMigrating, setIsMigrating] = useState(false);
+
+  const handleEdit = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCreate = () => {
+    setSelectedProduct(null);
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async (id: string, name: string) => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: `Deleting "${name}" is permanent and will remove it from the store.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#000',
+      cancelButtonColor: '#f3f4f6',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (result.isConfirmed) {
+      const res = await deleteProduct(id);
+      if (res.success) {
+        Swal.fire('Deleted!', 'Product has been removed.', 'success');
+      } else {
+        Swal.fire('Error', res.error, 'error');
+      }
+    }
+  };
+
+  const runMigration = async () => {
+    setIsMigrating(true);
+    const res = await migrateProducts();
+    if (res.success) {
+      Swal.fire('Success', `Migrated ${res.count} products from JSON to Supabase.`, 'success');
+    } else {
+      Swal.fire('Error', res.error, 'error');
+    }
+    setIsMigrating(false);
+  };
 
   return (
     <div className="min-h-screen bg-[#fbfbfd] flex font-sans">
@@ -81,19 +131,43 @@ export default function AdminDashboardClient({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 p-8 sm:p-12 h-screen overflow-y-auto">
-        <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <main className="flex-1 ml-64 p-8 sm:p-12 h-screen overflow-y-auto relative">
+        <div className="max-w-6xl mx-auto space-y-8">
           
-          <header>
-            <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-2">
-              {activeTab === 'orders' ? 'Overview' : 'Product Catalog'}
-            </h1>
-            <p className="text-gray-500 font-medium">
-              {activeTab === 'orders' 
-                ? 'Manage your incoming orders and delivery status.' 
-                : 'View and manage your current store inventory.'}
-            </p>
-          </header>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+              <div>
+                <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-2">
+                  {activeTab === 'orders' ? 'Overview' : 'Product Catalog'}
+                </h1>
+                <p className="text-gray-500 font-medium">
+                  {activeTab === 'orders' 
+                    ? 'Manage your incoming orders and delivery status.' 
+                    : 'View and manage your current store inventory.'}
+                </p>
+              </div>
+              
+              <div className="flex gap-3">
+                {activeTab === 'products' && (
+                  <>
+                    <button 
+                      onClick={runMigration}
+                      disabled={isMigrating}
+                      className="px-5 py-3 rounded-2xl border border-gray-200 bg-white font-bold text-gray-600 hover:text-black hover:border-black transition-all flex items-center gap-2 group"
+                    >
+                      <Database size={18} className={isMigrating ? 'animate-spin' : 'group-hover:rotate-12 transition-transform'} />
+                      {isMigrating ? 'Migrating...' : 'Sync from JSON'}
+                    </button>
+                    <button 
+                      onClick={handleCreate}
+                      className="px-6 py-3 rounded-2xl bg-black text-white font-bold flex items-center gap-2 hover:bg-gray-800 transition-all shadow-xl shadow-black/10"
+                    >
+                      <Plus size={18} />
+                      Add Product
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
 
           {activeTab === 'orders' ? (
             <>
@@ -155,7 +229,7 @@ export default function AdminDashboardClient({
                       <th className="py-5 px-6 text-xs font-black uppercase tracking-widest text-gray-400">Image & Name</th>
                       <th className="py-5 px-6 text-xs font-black uppercase tracking-widest text-gray-400">Category</th>
                       <th className="py-5 px-6 text-xs font-black uppercase tracking-widest text-gray-400">Price</th>
-                      <th className="py-5 px-6 text-xs font-black uppercase tracking-widest text-gray-400 text-right">Identifier</th>
+                      <th className="py-5 px-6 text-xs font-black uppercase tracking-widest text-gray-400 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100/80">
@@ -182,9 +256,22 @@ export default function AdminDashboardClient({
                           ৳{product.price.toLocaleString()}
                         </td>
                         <td className="py-5 px-6 whitespace-nowrap text-right">
-                          <span className="text-xs font-mono font-bold text-gray-400">
-                            {product.id}
-                          </span>
+                          <div className="flex items-center justify-end gap-2">
+                            <button 
+                              onClick={() => handleEdit(product as any)}
+                              className="w-10 h-10 rounded-xl bg-gray-50 text-gray-400 hover:bg-black hover:text-white flex items-center justify-center transition-all group"
+                              title="Edit"
+                            >
+                              <Edit2 size={16} />
+                            </button>
+                            <button 
+                              onClick={() => handleDelete(product.id, product.name)}
+                              className="w-10 h-10 rounded-xl bg-gray-50 text-gray-400 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all group"
+                              title="Delete"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -195,6 +282,13 @@ export default function AdminDashboardClient({
           )}
         </div>
       </main>
+
+      {/* Product Management Modal - Moved to root level of dashboard */}
+      <ProductModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        product={selectedProduct} 
+      />
     </div>
   );
 }

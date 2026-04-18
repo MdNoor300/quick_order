@@ -1,13 +1,17 @@
-import fs from 'fs';
-import path from 'path';
-import ClientPage from '@/app/ClientPage';
+import { supabase } from '@/lib/supabase';
+import ClientPage from './ClientPage';
 import { Shield, Zap, Sparkles, Award, Camera, Plus, Mail, ArrowUpRight } from 'lucide-react';
 import FAQAccordion from '@/components/FAQAccordion';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
-  const filePath = path.join(process.cwd(), 'src/data/products.json');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const products = JSON.parse(fileContents);
+  const { data: productsData } = await supabase
+    .from('products')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const products = productsData || [];
 
   const lenses = products.filter((p: any) => p.category === 'Lenses');
   const accessories = products.filter((p: any) => p.category === 'Accessories');
