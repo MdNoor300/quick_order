@@ -153,8 +153,8 @@ export default function ProductModal({ isOpen, onClose, product }: ProductModalP
               <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-bold">৳</span>
               <input 
                 type="number" 
-                value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
+                value={formData.price === 0 ? '' : formData.price}
+                onChange={(e) => setFormData({ ...formData, price: e.target.value === '' ? 0 : Number(e.target.value) })}
                 className="w-full pl-10 pr-5 py-3 rounded-2xl border border-gray-200 focus:border-black focus:ring-4 focus:ring-black/5 outline-none transition-all font-bold"
                 placeholder="0"
                 required
