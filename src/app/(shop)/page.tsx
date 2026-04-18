@@ -58,8 +58,8 @@ export default async function Home() {
         <div className="absolute bottom-1/4 -right-20 w-64 h-64 sm:w-96 sm:h-96 bg-secondary/5 rounded-full blur-[80px] sm:blur-[120px] -z-10 animate-pulse" />
       </section>
 
-      {/* Bento Grid Features */}
-      <section className="py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative" id="features">
+      {/* Bento Grid Features - Desktop Only */}
+      <section className="hidden md:block py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative" id="features">
         {/* Added dynamic background elements for the section */}
         <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-40">
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
