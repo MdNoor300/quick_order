@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase';
 import ClientPage from './ClientPage';
 import { Shield, Zap, Sparkles, Award, Camera, Plus, Mail, ArrowUpRight } from 'lucide-react';
 import FAQAccordion from '@/components/FAQAccordion';
+import SocialLinks from '@/components/SocialLinks';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +32,10 @@ export default async function Home() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/50 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-medium animate-bounce shadow-sm">
               <Sparkles size={14} className="text-primary" />
               <span>Pro Series 4K is here</span>
+            </div>
+            
+            <div className="flex md:hidden justify-center pt-2">
+              <SocialLinks />
             </div>
             
             <h1 className="text-4xl sm:text-7xl md:text-9xl font-black tracking-tighter text-foreground leading-[0.9] drop-shadow-sm px-2">
