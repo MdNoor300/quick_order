@@ -23,9 +23,9 @@ export default async function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background flex flex-col">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-4 sm:pt-44 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden mesh-gradient">
+      <section className="relative pt-32 pb-4 sm:pt-44 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden mesh-gradient order-1">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center space-y-6 sm:space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/50 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-medium animate-bounce shadow-sm">
@@ -59,7 +59,7 @@ export default async function Home() {
       </section>
 
       {/* Bento Grid Features - Desktop Only */}
-      <section className="hidden md:block py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative" id="features">
+      <section className="hidden md:block py-24 sm:py-40 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative md:order-2" id="features">
         {/* Added dynamic background elements for the section */}
         <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-40">
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
@@ -174,7 +174,7 @@ export default async function Home() {
       </section>
 
       {/* Product Grid Section - Lenses */}
-      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 sm:pb-32" id="lenses">
+      <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-20 sm:pb-32 order-2 md:order-3" id="lenses">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-4">
           <div className="text-left">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3 sm:mb-4 px-2">The Lens Collection</h2>
@@ -185,7 +185,7 @@ export default async function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-primary/5 py-24 sm:py-32 px-4 sm:px-6 lg:px-8" id="reviews">
+      <section className="bg-primary/5 py-24 sm:py-32 px-4 sm:px-6 lg:px-8 order-4 md:order-4" id="reviews">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4">Voices from the Field</h2>
@@ -213,7 +213,7 @@ export default async function Home() {
       </section>
 
       {/* Showcase Section */}
-      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="showcase">
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto order-5 md:order-5" id="showcase">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter leading-tight">
@@ -255,7 +255,7 @@ export default async function Home() {
         </div>
       </section>
 
-       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 sm:pb-32" id="accessories">
+       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 sm:pb-32 order-3 md:order-6" id="accessories">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6 sm:gap-4">
           <div className="text-left">
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-3 sm:mb-4 px-2">Pro Creator Tools</h2>
@@ -265,7 +265,7 @@ export default async function Home() {
         <ClientPage products={accessories} />
       </section>
       {/* FAQ Section */}
-      <section className="py-24 sm:py-32 bg-gray-50 px-4 sm:px-6 lg:px-8" id="faq">
+      <section className="py-24 sm:py-32 bg-gray-50 px-4 sm:px-6 lg:px-8 order-6 md:order-7" id="faq">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-center mb-16">Reliability First</h2>
           <FAQAccordion items={faqs} />
