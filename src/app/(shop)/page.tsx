@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 sm:pt-44 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden mesh-gradient">
+      <section className="relative pt-32 pb-4 sm:pt-44 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden mesh-gradient">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center space-y-6 sm:space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/50 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-medium animate-bounce shadow-sm">
@@ -42,7 +42,7 @@ export default async function Home() {
               Transform your smartphone into a professional cinema camera with our award-winning optics. Engineered for creators.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 sm:pt-8">
+            <div className="hidden md:flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 sm:pt-8">
               <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-800 transition-all shadow-xl hover:shadow-black/20 hover:-translate-y-1">
                 Explore Lenses
               </button>
