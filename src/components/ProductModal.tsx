@@ -79,7 +79,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             <form action={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="fullName" className="block text-sm font-bold text-gray-700 mb-1 tracking-tight">
-                  Full Name
+                  আপনার নাম (Full Name)
                 </label>
                 <input
                   type="text"
@@ -87,13 +87,13 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   name="fullName"
                   required
                   className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                  placeholder="John Doe"
+                  placeholder="আপনার নাম লিখুন (Type your name)"
                 />
               </div>
 
               <div>
                 <label htmlFor="phoneNumber" className="block text-sm font-bold text-gray-700 mb-1 tracking-tight">
-                  Phone Number
+                  মোবাইল নম্বর (Mobile Number)
                 </label>
                 <input
                   type="tel"
@@ -105,20 +105,55 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     const value = e.currentTarget.value.replace(/[^0-9]/g, '');
                     e.currentTarget.value = value;
                     
-                    if (value.length > 0 && !/^01[3-9]\d{8}$/.test(value)) {
-                      e.currentTarget.setCustomValidity('Please enter a valid phone number');
+                    if (value.length > 0) {
+                      if (!value.startsWith('01')) {
+                        e.currentTarget.setCustomValidity('মোবাইল নম্বর অবশ্যই 01 দিয়ে শুরু হতে হবে');
+                      } else if (value.length !== 11) {
+                        e.currentTarget.setCustomValidity('মোবাইল নম্বর অবশ্যই ১১ ডিজিটের হতে হবে');
+                      } else {
+                        e.currentTarget.setCustomValidity('');
+                      }
                     } else {
                       e.currentTarget.setCustomValidity('');
                     }
                   }}
                   className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                  placeholder="01712345678"
+                  placeholder="01xxxxxxxxx"
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="district" className="block text-sm font-bold text-gray-700 mb-1 tracking-tight">
+                    জেলা (District)
+                  </label>
+                  <input
+                    type="text"
+                    id="district"
+                    name="district"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
+                    placeholder="Dhaka"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="thana" className="block text-sm font-bold text-gray-700 mb-1 tracking-tight">
+                    থানা (Thana)
+                  </label>
+                  <input
+                    type="text"
+                    id="thana"
+                    name="thana"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
+                    placeholder="Mirpur"
+                  />
+                </div>
               </div>
 
               <div>
                 <label htmlFor="address" className="block text-sm font-bold text-gray-700 mb-1 tracking-tight">
-                  Delivery Address
+                  বিস্তারিত ঠিকানা (Address)
                 </label>
                 <textarea
                   id="address"
@@ -126,7 +161,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   required
                   rows={2}
                   className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-gray-50 text-sm"
-                  placeholder="Street, City, Area"
+                  placeholder="বাড়ি নম্বর, রোড নম্বর, এলাকা (House, Road, Area)"
                 />
               </div>
 
