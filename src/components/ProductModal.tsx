@@ -43,31 +43,31 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div className="bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl transition-all relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center sm:p-4 bg-black/40 backdrop-blur-sm">
+      <div className="bg-white sm:rounded-[2.5rem] rounded-none w-full max-w-2xl h-full sm:h-auto overflow-hidden shadow-2xl transition-all relative">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 bg-white/80 text-gray-500 hover:text-gray-900 hover:bg-white rounded-full transition-colors z-30 shadow-sm"
+          className="absolute top-4 right-4 p-2 bg-white/90 text-gray-500 hover:text-gray-900 hover:bg-white rounded-full transition-colors z-40 shadow-md border border-gray-100"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5 flex-shrink-0" />
         </button>
 
-        <div className="flex flex-col md:flex-row h-full max-h-[90vh] overflow-y-auto md:overflow-hidden">
+        <div className="flex flex-col md:flex-row h-full max-h-screen sm:max-h-[90vh] md:max-h-[85vh] overflow-y-auto md:overflow-hidden">
           {/* Left: Image Slider */}
-          <div className="w-full md:w-1/2 bg-gray-50">
+          <div className="w-full md:w-1/2 bg-gray-50 flex-shrink-0">
             <ImageSlider 
               images={product.images} 
               name={product.name} 
-              className="h-full min-h-[300px] md:min-h-0" 
-              aspectRatio="aspect-square md:aspect-auto"
+              className="h-full" 
+              aspectRatio="aspect-[4/3] md:aspect-auto"
             />
           </div>
 
           {/* Right: Order Form */}
-          <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-center overflow-y-auto">
+          <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col">
             <div className="mb-6">
-              <h2 className="text-2xl font-black text-gray-900 tracking-tight leading-tight mb-2">{product.name}</h2>
-              <p className="text-xl font-bold text-primary">৳{product.price.toFixed(2)}</p>
+              <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight leading-tight mb-1">{product.name}</h2>
+              <p className="text-xl font-black text-primary">৳{product.price.toLocaleString()}</p>
             </div>
 
             <form action={handleSubmit} className="space-y-4">
