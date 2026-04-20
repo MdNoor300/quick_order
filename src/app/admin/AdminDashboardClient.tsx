@@ -14,7 +14,7 @@ import { Product } from '@/lib/types';
 interface AdminDashboardClientProps {
   orders: Order[];
   products: Product[];
-  productMap: Record<string, { name: string; price: number; image: string; category: string }>;
+  productMap: Record<string, { name: string; price: number; image?: string; category?: string }>;
   metrics: {
     confirmedRevenue: number;
     potentialRevenue: number;
