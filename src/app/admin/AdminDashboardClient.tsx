@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2 } from 'lucide-react';
+import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2, Menu, X } from 'lucide-react';
 import AdminTable, { Order } from './AdminTable';
 import ProductModal from '@/components/admin/ProductModal';
 import { deleteProduct, migrateProducts } from '@/app/actions/products';
@@ -26,6 +26,13 @@ interface AdminDashboardClientProps {
     confirmedRevenue: number;
     potentialRevenue: number;
     pendingDeliveries: number;
+    totalOrdersCount: number;
+  };
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
   };
 }
 
@@ -34,11 +41,13 @@ export default function AdminDashboardClient({
   products,
   productMap,
   metrics,
+  pagination,
 }: AdminDashboardClientProps) {
   const [activeTab, setActiveTab] = useState<'orders' | 'products'>('orders');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isMigrating, setIsMigrating] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
@@ -84,19 +93,41 @@ export default function AdminDashboardClient({
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfbfd] flex font-sans">
+    <div className="min-h-screen bg-[#fbfbfd] flex font-sans relative">
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden transition-all duration-300"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* SaaS Sidebar */}
-      <aside className="w-64 fixed inset-y-0 left-0 bg-white/60 backdrop-blur-3xl border-r border-gray-200 z-20 flex flex-col pt-8 pb-6 px-4">
-        <div className="flex items-center gap-3 px-2 mb-12">
-          <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg">
-            T
+      <aside className={`
+        w-64 fixed inset-y-0 left-0 bg-white/80 backdrop-blur-3xl border-r border-gray-200 z-40 flex flex-col pt-8 pb-6 px-4 transition-transform duration-300 ease-in-out
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        <div className="flex items-center justify-between gap-3 px-2 mb-12">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold text-lg">
+              T
+            </div>
+            <span className="font-black tracking-tight text-xl text-gray-900">Admin</span>
           </div>
-          <span className="font-black tracking-tight text-xl text-gray-900">Admin</span>
+          <button 
+            onClick={() => setIsSidebarOpen(false)}
+            className="lg:hidden p-2 text-gray-400 hover:text-gray-900 transition-colors"
+          >
+            <X size={20} />
+          </button>
         </div>
 
         <nav className="flex-1 space-y-1.5 px-2">
           <button
-            onClick={() => setActiveTab('orders')}
+            onClick={() => {
+              setActiveTab('orders');
+              setIsSidebarOpen(false);
+            }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
               activeTab === 'orders'
                 ? 'bg-black text-white shadow-md shadow-black/10'
@@ -107,7 +138,10 @@ export default function AdminDashboardClient({
             Orders
           </button>
           <button
-            onClick={() => setActiveTab('products')}
+            onClick={() => {
+              setActiveTab('products');
+              setIsSidebarOpen(false);
+            }}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all ${
               activeTab === 'products'
                 ? 'bg-black text-white shadow-md shadow-black/10'
@@ -131,9 +165,22 @@ export default function AdminDashboardClient({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 p-8 sm:p-12 h-screen overflow-y-auto relative">
+      <main className="flex-1 lg:ml-64 p-6 sm:p-12 min-h-screen overflow-y-auto relative">
         <div className="max-w-6xl mx-auto space-y-8">
           
+            {/* Mobile Header Toggle */}
+            <div className="lg:hidden flex items-center justify-between mb-6">
+              <button 
+                onClick={() => setIsSidebarOpen(true)}
+                className="p-2 -ml-2 text-gray-600 hover:text-black transition-colors"
+              >
+                <Menu size={24} />
+              </button>
+              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                T
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
               <div>
                 <h1 className="text-3xl font-black tracking-tight text-gray-900 mb-2">
@@ -172,7 +219,7 @@ export default function AdminDashboardClient({
           {activeTab === 'orders' ? (
             <>
               {/* Stats Row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
@@ -180,7 +227,7 @@ export default function AdminDashboardClient({
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Total</span>
                   </div>
-                  <p className="text-3xl font-black tracking-tighter text-gray-900">{orders.length}</p>
+                  <p className="text-3xl font-black tracking-tighter text-gray-900">{metrics.totalOrdersCount}</p>
                   <p className="text-sm font-medium text-gray-500 mt-1">Orders processed</p>
                 </div>
 
@@ -216,7 +263,11 @@ export default function AdminDashboardClient({
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-gray-900">Recent Deliveries</h2>
                 </div>
-                <AdminTable orders={orders} productMap={productMap} />
+                <AdminTable 
+                  orders={orders} 
+                  productMap={productMap} 
+                  pagination={pagination}
+                />
               </div>
             </>
           ) : (
@@ -258,7 +309,7 @@ export default function AdminDashboardClient({
                         <td className="py-5 px-6 whitespace-nowrap text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button 
-                              onClick={() => handleEdit(product as any)}
+                              onClick={() => handleEdit(product)}
                               className="w-10 h-10 rounded-xl bg-gray-50 text-gray-400 hover:bg-black hover:text-white flex items-center justify-center transition-all group"
                               title="Edit"
                             >

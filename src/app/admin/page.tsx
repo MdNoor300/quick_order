@@ -13,7 +13,8 @@ export default async function AdminPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const cookieStore = await cookies();
-  const secret = (await searchParams).secret || cookieStore.get('admin_secret')?.value;
+  const searchParamsResolved = await searchParams;
+  const secret = searchParamsResolved.secret || cookieStore.get('admin_secret')?.value;
   const expectedSecret = process.env.ADMIN_SECRET;
 
   if (!expectedSecret || secret !== expectedSecret) {
@@ -25,7 +26,7 @@ export default async function AdminPage({
           </div>
           <h1 className="text-2xl font-black tracking-tight text-gray-900 mb-2">Access Denied</h1>
           <p className="text-gray-500 mb-8 font-medium">
-            You don't have permission to view this page. Ensure you are using the correct secret token.
+            You don&apos;t have permission to view this page. Ensure you are using the correct secret token.
           </p>
           <Link
             href="/"
@@ -38,19 +39,27 @@ export default async function AdminPage({
     );
   }
 
-  // Fetch orders from Supabase. If error (like missing keys locally), default to empty array.
-  const { data: ordersData, error } = await supabase
+  // Pagination parameters
+  const page = Number(searchParamsResolved.page) || 1;
+  const limit = 10;
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  // Fetch paginated orders from Supabase
+  const { data: ordersData, error, count } = await supabase
     .from('orders')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .select('*', { count: 'exact' })
+    .order('created_at', { ascending: false })
+    .range(from, to);
 
   if (error) {
     console.warn('Supabase fetch failed (likely missing credentials). Defaulting to empty orders array.');
   }
   
   const orders: Order[] = (ordersData as Order[]) || [];
+  const totalOrders = count || 0;
 
-  // Load products dynamically
+  // Fetch products dynamically
   const { data: productsData } = await supabase
     .from('products')
     .select('*')
@@ -59,17 +68,21 @@ export default async function AdminPage({
   const products = productsData || [];
   
   // Create Product Map
-  const productMap: Record<string, { name: string; price: number }> = {};
-  products.forEach((p: any) => {
-    productMap[p.id] = { name: p.name, price: p.price };
+  const productMap: Record<string, { name: string; price: number; image: string; category: string }> = {};
+  products.forEach((p: Product) => {
+    productMap[p.id] = { name: p.name, price: p.price, image: p.images[0], category: p.category };
   });
 
-  // Calculate Metrics
+  // Calculate Metrics - Fetch all orders (lightweight) to ensure accuracy across pages
+  const { data: allOrdersForMetrics } = await supabase
+    .from('orders')
+    .select('status, product_id');
+
   let confirmedRevenue = 0;
   let potentialRevenue = 0;
   let pendingDeliveries = 0;
 
-  orders.forEach((order) => {
+  (allOrdersForMetrics || []).forEach((order) => {
     const product = productMap[order.product_id];
     const price = product ? product.price : 0;
     
@@ -84,14 +97,25 @@ export default async function AdminPage({
     }
   });
 
-  const metrics = { confirmedRevenue, potentialRevenue, pendingDeliveries };
+  const metrics = { 
+    confirmedRevenue, 
+    potentialRevenue, 
+    pendingDeliveries,
+    totalOrdersCount: allOrdersForMetrics?.length || 0 
+  };
 
   return (
     <AdminDashboardClient 
       orders={orders} 
       products={products} 
       productMap={productMap} 
-      metrics={metrics} 
+      metrics={metrics}
+      pagination={{
+        currentPage: page,
+        totalPages: Math.ceil(totalOrders / limit),
+        totalItems: totalOrders,
+        itemsPerPage: limit
+      }}
     />
   );
 }
