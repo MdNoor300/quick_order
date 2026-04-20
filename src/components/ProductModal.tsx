@@ -86,8 +86,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   id="fullName"
                   name="fullName"
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                  placeholder="আপনার নাম লিখুন (Type your name)"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50 placeholder:text-gray-300 placeholder:font-normal"
+                  placeholder="আপনার নাম লিখুন"
                 />
               </div>
 
@@ -117,8 +117,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                       e.currentTarget.setCustomValidity('');
                     }
                   }}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                  placeholder="01xxxxxxxxx"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50 placeholder:text-gray-300 placeholder:font-normal"
+                  placeholder="আপনার মোবাইল নম্বর লিখুন"
                 />
               </div>
 
@@ -132,8 +132,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     id="district"
                     name="district"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                    placeholder="Dhaka"
+                    placeholder="জেলা"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50 placeholder:text-gray-300 placeholder:font-normal"
                   />
                 </div>
                 <div>
@@ -145,8 +145,8 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     id="thana"
                     name="thana"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50"
-                    placeholder="Mirpur"
+                    placeholder="থানা"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-gray-50 placeholder:text-gray-300 placeholder:font-normal"
                   />
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   name="address"
                   required
                   rows={2}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-gray-50 text-sm"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none bg-gray-50 text-sm placeholder:text-gray-300 placeholder:font-normal"
                   placeholder="বাড়ি নম্বর, রোড নম্বর, এলাকা (House, Road, Area)"
                 />
               </div>
