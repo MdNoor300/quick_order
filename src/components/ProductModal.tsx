@@ -4,14 +4,8 @@ import { useState } from 'react';
 import { X, Loader2 } from 'lucide-react';
 import { createOrder } from '@/app/actions/order';
 import ImageSlider from './ImageSlider';
+import { Product } from '@/lib/types';
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  images: string[];
-  description: string;
-}
 
 interface ProductModalProps {
   product: Product;

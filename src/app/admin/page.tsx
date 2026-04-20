@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import AdminDashboardClient from './AdminDashboardClient';
 import { Order } from './AdminTable';
-
+import { Product } from '@/lib/types';
 import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
@@ -70,7 +70,12 @@ export default async function AdminPage({
   // Create Product Map
   const productMap: Record<string, { name: string; price: number; image: string; category: string }> = {};
   products.forEach((p: Product) => {
-    productMap[p.id] = { name: p.name, price: p.price, image: p.images[0], category: p.category };
+    productMap[p.id] = { 
+      name: p.name, 
+      price: p.price, 
+      image: p.image_url || p.images?.[0] || '', 
+      category: p.category || 'General'
+    };
   });
 
   // Calculate Metrics - Fetch all orders (lightweight) to ensure accuracy across pages

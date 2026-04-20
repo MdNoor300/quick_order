@@ -8,20 +8,13 @@ import AdminTable, { Order } from './AdminTable';
 import ProductModal from '@/components/admin/ProductModal';
 import { deleteProduct, migrateProducts } from '@/app/actions/products';
 import Swal from 'sweetalert2';
+import { Product } from '@/lib/types';
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  images: string[];
-  description: string;
-}
 
 interface AdminDashboardClientProps {
   orders: Order[];
   products: Product[];
-  productMap: Record<string, { name: string; price: number }>;
+  productMap: Record<string, { name: string; price: number; image: string; category: string }>;
   metrics: {
     confirmedRevenue: number;
     potentialRevenue: number;

@@ -17,7 +17,7 @@ export interface Order {
 
 interface AdminTableProps {
   orders: Order[];
-  productMap: Record<string, { name: string; price: number; image: string; category: string }>;
+  productMap: Record<string, { name: string; price: number; image?: string; category?: string }>;
   pagination: {
     currentPage: number;
     totalPages: number;
@@ -391,12 +391,16 @@ export default function AdminTable({ orders, productMap, pagination }: AdminTabl
             <div className="p-8 space-y-8 max-h-[60vh] overflow-y-auto">
               {/* Product Info */}
               <div className="flex items-center gap-6 p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                <div className="w-24 h-24 rounded-2xl overflow-hidden bg-white border border-gray-200 relative shrink-0">
-                  <img 
-                    src={productMap[selectedOrder.product_id]?.image} 
-                    alt="Product" 
-                    className="object-cover w-full h-full"
-                  />
+                <div className="w-24 h-24 rounded-2xl overflow-hidden bg-white border border-gray-200 relative shrink-0 flex items-center justify-center">
+                  {productMap[selectedOrder.product_id]?.image ? (
+                    <img 
+                      src={productMap[selectedOrder.product_id].image} 
+                      alt="Product" 
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <Box size={32} className="text-gray-200" />
+                  )}
                 </div>
                 <div className="flex-1">
                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">

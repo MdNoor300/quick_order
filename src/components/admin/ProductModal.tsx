@@ -3,15 +3,8 @@
 import { useState, useEffect } from 'react';
 import { X, Upload, Plus, Trash2, Loader2, Image as ImageIcon } from 'lucide-react';
 import { saveProduct, uploadProductImage } from '@/app/actions/products';
+import { Product } from '@/lib/types';
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  description: string;
-  images: string[];
-}
 
 interface ProductModalProps {
   isOpen: boolean;

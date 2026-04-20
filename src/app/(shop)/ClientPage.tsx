@@ -4,14 +4,8 @@ import { useState } from 'react';
 import ProductModal from '@/components/ProductModal';
 import ImageSlider from '@/components/ImageSlider';
 import { Plus, ArrowRight } from 'lucide-react';
+import { Product } from '@/lib/types';
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  images: string[];
-  description: string;
-}
 
 export default function ClientPage({ products }: { products: Product[] }) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
