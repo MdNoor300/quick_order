@@ -38,6 +38,7 @@ export default function Navbar() {
             <Link href="#accessories" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Accessories</Link>
             <Link href="#reviews" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Reviews</Link>
             <Link href="#faq" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">FAQ</Link>
+            <Link href="/contact" className="text-sm font-bold text-gray-500 hover:text-black transition-colors">Contact</Link>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -106,6 +107,13 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               FAQ
+            </Link>
+            <Link 
+              href="/contact" 
+              className="text-3xl font-bold tracking-tighter hover:text-primary transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact
             </Link>
           </div>
 
