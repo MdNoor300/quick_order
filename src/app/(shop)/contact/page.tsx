@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowUpRight, MessageCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function ContactPage() {
   const contactMethods = [
@@ -53,7 +53,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-[#fbfbfd] pt-32 pb-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20 space-y-4">
           <h1 className="text-5xl sm:text-7xl font-black tracking-tighter text-gray-900">
             Let&apos;s Connect.
@@ -63,53 +63,53 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 text-left">
           {contactMethods.map((method) => (
             <a
               key={method.name}
               href={method.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col justify-between h-[320px]"
+              className="group relative bg-white rounded-[2.5rem] p-6 sm:p-10 border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col justify-between min-h-[250px] sm:min-h-[320px]"
             >
               {/* Background Glow */}
               <div className={`absolute -right-12 -top-12 w-32 h-32 ${method.color} opacity-[0.03] blur-3xl group-hover:opacity-10 transition-opacity`} />
               
               <div>
-                <div className="flex justify-between items-start mb-8">
-                  <div className={`w-16 h-16 ${method.color} rounded-2xl flex items-center justify-center text-white shadow-lg shadow-inherit/20 group-hover:scale-110 transition-transform duration-500`}>
+                <div className="flex justify-between items-start mb-6 sm:mb-10">
+                  <div className={`w-12 h-12 sm:w-20 sm:h-20 ${method.color} rounded-xl sm:rounded-3xl flex items-center justify-center text-white shadow-lg shadow-inherit/20 group-hover:scale-110 transition-transform duration-500`}>
                     {method.icon}
                   </div>
-                  <div className="p-3 bg-gray-50 rounded-full text-gray-400 group-hover:bg-black group-hover:text-white transition-colors duration-300">
-                    <ArrowUpRight className="w-5 h-5" />
+                  <div className="p-2 sm:p-3 bg-gray-50 rounded-xl sm:rounded-2xl text-gray-400 group-hover:bg-black group-hover:text-white transition-all duration-300">
+                    <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1 sm:space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
+                    <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
                       {method.label}
                     </span>
                   </div>
-                  <h2 className="text-2xl font-black tracking-tight text-gray-900 group-hover:text-black">
+                  <h2 className="text-lg sm:text-2xl font-black tracking-tight text-gray-900 group-hover:text-black">
                     {method.name}
                   </h2>
                 </div>
               </div>
 
-              <div className="mt-6">
-                <p className="text-sm font-medium text-gray-500 leading-relaxed group-hover:text-gray-700 transition-colors">
+              <div className="mt-4 sm:mt-6">
+                <p className="text-[10px] sm:text-sm font-medium text-gray-500 leading-relaxed group-hover:text-gray-700 transition-colors line-clamp-2">
                   {method.description}
                 </p>
-                <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
-                  <span className="text-sm font-bold text-gray-900">{method.handle}</span>
+                <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-gray-50 flex items-center gap-2">
+                  <span className="text-[10px] sm:text-sm font-bold text-gray-900">{method.handle}</span>
                 </div>
               </div>
             </a>
           ))}
         </div>
 
-        <div className="mt-20 p-12 bg-black rounded-[3rem] text-white overflow-hidden relative">
+        <div className="mt-20 p-8 sm:p-12 bg-black rounded-[3rem] text-white overflow-hidden relative shadow-2xl">
           <div className="absolute right-[-10%] top-[-10%] w-96 h-96 bg-white/5 rounded-full blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div>
@@ -120,7 +120,7 @@ export default function ContactPage() {
               href="https://wa.me/8801788977156" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-10 py-5 bg-white text-black rounded-2xl font-black text-lg hover:bg-[#25D366] hover:text-white transition-all shadow-xl hover:scale-105 active:scale-95"
+              className="w-full md:w-auto px-10 py-5 bg-white text-black rounded-2xl font-black text-lg hover:bg-[#25D366] hover:text-white transition-all shadow-xl hover:scale-105 active:scale-95 text-center"
             >
               Start Chat Now
             </a>
