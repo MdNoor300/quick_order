@@ -52,6 +52,7 @@ export default function AdminTable({ orders, productMap, pagination }: AdminTabl
   const handleStatusChange = async (id: string, newStatus: 'pending' | 'completed' | 'shipped') => {
     setLoadingId(id);
     await updateOrderStatus(id, newStatus);
+    router.refresh();
     setLoadingId(null);
   };
 
@@ -59,6 +60,7 @@ export default function AdminTable({ orders, productMap, pagination }: AdminTabl
     if (!confirm('Are you certain you want to permanently delete this order?')) return;
     setLoadingId(id);
     await deleteOrder(id);
+    router.refresh();
     setLoadingId(null);
   };
 

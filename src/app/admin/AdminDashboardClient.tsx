@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2, Menu, X, Truck, CheckCircle } from 'lucide-react';
 import AdminTable, { Order } from './AdminTable';
 import ProductModal from '@/components/admin/ProductModal';
 import { deleteProduct, migrateProducts } from '@/app/actions/products';
@@ -19,6 +19,8 @@ interface AdminDashboardClientProps {
     confirmedRevenue: number;
     potentialRevenue: number;
     pendingDeliveries: number;
+    shippedCount: number;
+    deliveredCount: number;
     totalOrdersCount: number;
   };
   pagination: {
@@ -212,7 +214,7 @@ export default function AdminDashboardClient({
           {activeTab === 'orders' ? (
             <>
               {/* Stats Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
@@ -221,7 +223,7 @@ export default function AdminDashboardClient({
                     <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Total</span>
                   </div>
                   <p className="text-3xl font-black tracking-tighter text-gray-900">{metrics.totalOrdersCount}</p>
-                  <p className="text-sm font-medium text-gray-500 mt-1">Orders processed</p>
+                  <p className="text-sm font-medium text-gray-500 mt-1">Total order listed</p>
                 </div>
 
                 <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
@@ -229,7 +231,7 @@ export default function AdminDashboardClient({
                     <div className="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center">
                       <DollarSign size={24} />
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Revenue</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Earnings</span>
                   </div>
                   <div className="flex items-baseline gap-2">
                     <p className="text-3xl font-black tracking-tighter text-gray-900">৳{metrics.confirmedRevenue.toLocaleString()}</p>
@@ -241,13 +243,37 @@ export default function AdminDashboardClient({
 
                 <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center animate-pulse">
+                    <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center">
                       <Clock size={24} />
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Action</span>
                   </div>
                   <p className="text-3xl font-black tracking-tighter text-gray-900">{metrics.pendingDeliveries}</p>
-                  <p className="text-sm font-medium text-gray-500 mt-1">Orders pending dispatch</p>
+                  <p className="text-sm font-medium text-gray-500 mt-1">Orders pending</p>
+                </div>
+
+                {/* Shipped Card */}
+                <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center">
+                      <Truck size={24} />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Shipped</span>
+                  </div>
+                  <p className="text-3xl font-black tracking-tighter text-gray-900">{metrics.shippedCount}</p>
+                  <p className="text-sm font-medium text-gray-500 mt-1">Orders on the way</p>
+                </div>
+
+                {/* Delivered Card */}
+                <div className="bg-white/80 backdrop-blur-xl border border-gray-200/60 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center">
+                      <CheckCircle size={24} />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Delivered</span>
+                  </div>
+                  <p className="text-3xl font-black tracking-tighter text-gray-900">{metrics.deliveredCount}</p>
+                  <p className="text-sm font-medium text-gray-500 mt-1">Orders completed</p>
                 </div>
               </div>
 

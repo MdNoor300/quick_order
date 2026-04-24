@@ -86,6 +86,8 @@ export default async function AdminPage({
   let confirmedRevenue = 0;
   let potentialRevenue = 0;
   let pendingDeliveries = 0;
+  let shippedCount = 0;
+  let deliveredCount = 0;
 
   (allOrdersForMetrics || []).forEach((order) => {
     const product = productMap[order.product_id];
@@ -93,12 +95,15 @@ export default async function AdminPage({
     
     if (order.status === 'completed') {
       confirmedRevenue += price;
+      deliveredCount++;
     } else {
       potentialRevenue += price;
     }
 
     if (order.status === 'pending') {
       pendingDeliveries++;
+    } else if (order.status === 'shipped') {
+      shippedCount++;
     }
   });
 
@@ -106,6 +111,8 @@ export default async function AdminPage({
     confirmedRevenue, 
     potentialRevenue, 
     pendingDeliveries,
+    shippedCount,
+    deliveredCount,
     totalOrdersCount: allOrdersForMetrics?.length || 0 
   };
 
