@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { LayoutDashboard, Package, LogOut, DollarSign, ShoppingBag, Clock, Plus, Database, Edit2, Trash2, Menu, X, Truck, CheckCircle } from 'lucide-react';
 import AdminTable, { Order } from './AdminTable';
 import ProductModal from '@/components/admin/ProductModal';
@@ -43,6 +44,23 @@ export default function AdminDashboardClient({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isMigrating, setIsMigrating] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentStatus = searchParams.get('status') || 'all';
+
+  const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const params = new URLSearchParams(searchParams);
+    const newStatus = e.target.value;
+    if (newStatus === 'all') {
+      params.delete('status');
+    } else {
+      params.set('status', newStatus);
+    }
+    params.set('page', '1');
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
@@ -281,6 +299,23 @@ export default function AdminDashboardClient({
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-gray-900">Recent Deliveries</h2>
+                  <div className="relative">
+                    <select
+                      value={currentStatus}
+                      onChange={handleStatusFilterChange}
+                      className="appearance-none pl-4 pr-10 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 outline-none focus:border-black focus:ring-1 focus:ring-black transition-all shadow-sm cursor-pointer"
+                    >
+                      <option value="all">All Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="completed">Delivered</option>
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <AdminTable 
                   orders={orders} 

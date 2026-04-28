@@ -41,16 +41,25 @@ export default async function AdminPage({
 
   // Pagination parameters
   const page = Number(searchParamsResolved.page) || 1;
+  const statusFilter = (searchParamsResolved.status as string) || 'all';
   const limit = 10;
   const from = (page - 1) * limit;
   const to = from + limit - 1;
 
-  // Fetch paginated orders from Supabase
-  const { data: ordersData, error, count } = await supabase
+  // Build the base query
+  let ordersQuery = supabase
     .from('orders')
     .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(from, to);
+
+  // Apply status filter if it's not 'all'
+  if (statusFilter !== 'all') {
+    ordersQuery = ordersQuery.eq('status', statusFilter);
+  }
+
+  // Fetch paginated orders from Supabase
+  const { data: ordersData, error, count } = await ordersQuery;
 
   if (error) {
     console.warn('Supabase fetch failed (likely missing credentials). Defaulting to empty orders array.');
