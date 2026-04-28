@@ -42,7 +42,7 @@ export default async function AdminPage({
   // Pagination parameters
   const page = Number(searchParamsResolved.page) || 1;
   const statusFilter = (searchParamsResolved.status as string) || 'all';
-  const limit = 10;
+  const limit = Number(searchParamsResolved.limit) || 10;
   const from = (page - 1) * limit;
   const to = from + limit - 1;
 

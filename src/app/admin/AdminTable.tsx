@@ -70,6 +70,13 @@ export default function AdminTable({ orders, productMap, pagination }: AdminTabl
     router.push(`${pathname}?${params.toString()}`);
   };
 
+  const handleLimitChange = (limit: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('limit', limit.toString());
+    params.set('page', '1'); // Reset to page 1 on limit change
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   if (orders.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-32 bg-white/60 backdrop-blur-md rounded-[2rem] border border-gray-100 shadow-sm">
@@ -317,9 +324,29 @@ export default function AdminTable({ orders, productMap, pagination }: AdminTabl
 
       {/* Pagination Controls */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-2">
-        <p className="text-sm font-medium text-gray-500 order-2 sm:order-1">
-          Showing <span className="text-gray-900 font-bold">{orders.length}</span> of <span className="text-gray-900 font-bold">{pagination.totalItems}</span> orders
-        </p>
+        <div className="flex items-center gap-4 order-2 sm:order-1">
+          <p className="text-sm font-medium text-gray-500">
+            Showing <span className="text-gray-900 font-bold">{orders.length}</span> of <span className="text-gray-900 font-bold">{pagination.totalItems}</span> orders
+          </p>
+          <div className="flex items-center gap-2 border-l border-gray-200 pl-4">
+            <span className="text-sm font-medium text-gray-500">Rows:</span>
+            <div className="relative">
+              <select
+                value={pagination.itemsPerPage}
+                onChange={(e) => handleLimitChange(Number(e.target.value))}
+                className="appearance-none bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg pl-3 pr-8 py-1.5 outline-none focus:border-black focus:ring-1 focus:ring-black cursor-pointer transition-all hover:border-gray-300"
+              >
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div className="flex items-center gap-2 order-1 sm:order-2">
           <button
